@@ -19,125 +19,123 @@ const App = () => {
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
 
-  const menuItems = [
-    { key: '1', label: 'Inicio' },
-    { key: '2', label: 'Servicios' },
-    { key: '3', label: 'Educación Financiera' },
-    { key: '4', label: 'Contacto' },
-  ];
-
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   return (
-    <Layout>
-      <Header
+    <div
+      style={{
+        backgroundImage: `url(/svgBackground.jpg)`, // Path relative to public folder
+        backgroundSize: 'cover', // Cover entire page
+        backgroundPosition: 'center', // Center the image
+        backgroundRepeat: 'no-repeat', // Do not repeat
+        minHeight: '100vh', // Ensure it covers the full viewport height
+        display: 'flex', // Make this container a flexbox
+        flexDirection: 'column', // Stack children vertically
+        justifyContent: 'space-between', // Push footer to the bottom
+      }}
+    >
+      <Layout
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '0 16px',
-          backgroundColor: '#003366',
-          color: '#fff',
+          backgroundColor: 'transparent',
         }}
       >
-        <div
+        <Header
           style={{
             display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            fontWeight: 'bold',
-            fontSize: '18px',
+            padding: '0 16px',
+            backgroundColor: 'transparent',
+            color: '#fff',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: 'transparent',
+            }}
+          >
+            <img
+              src="/ODS-11-Logo.png"
+              alt="ODS 11 Logo"
+              style={{
+                height: '40px',
+                objectFit: 'contain',
+              }}
+            />
+            <span
+              style={{
+                color: 'green',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                marginRight: '8px', // Space between text and logo
+              }}
+            >
+              ODS 11 - Cidades Sustentáveis
+            </span>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className="mobile-menu"
+            style={{
+              display: 'none',
+            }}
+          >
+            <Button
+              type="primary"
+              icon={<MenuOutlined />}
+              onClick={showDrawer}
+              style={{
+                backgroundColor: '#003366',
+              }}
+            />
+            <Drawer
+              title="Menu"
+              placement="right"
+              closable={true}
+              onClose={closeDrawer}
+              open={drawerVisible} // Updated prop
+            >
+            </Drawer>
+          </div>
+        </Header>
+        <Content
+          style={{
+            padding: '0 48px',
+            backgroundColor: 'transparent',
+          }}
+        >
+          <Breadcrumb
+            style={{
+              margin: '16px 0',
+              backgroundColor: 'transparent',
+            }}
+          >
+            <Breadcrumb.Item>App</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              background: 'transparent',
+              minHeight: 280,
+              padding: 24,
+            }}
+          >
+            Content
+          </div>
+        </Content>
+        <Footer
+          style={{
+            textAlign: 'center',
+            backgroundColor: 'green',
+            padding: '16px',
             color: '#fff',
           }}
         >
-          Mi Banxico
-        </div>
-
-        {/* Desktop Menu */}
-        <div
-          className="desktop-menu"
-          style={{
-            display: 'flex',
-          }}
-        >
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            items={menuItems}
-            style={{
-              backgroundColor: 'transparent',
-              borderBottom: 'none',
-            }}
-          />
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className="mobile-menu"
-          style={{
-            display: 'none',
-          }}
-        >
-          <Button
-            type="primary"
-            icon={<MenuOutlined />}
-            onClick={showDrawer}
-            style={{
-              backgroundColor: '#003366',
-              border: 'none',
-            }}
-          />
-          <Drawer
-            title="Menu"
-            placement="right"
-            closable={true}
-            onClose={closeDrawer}
-            open={drawerVisible} // Updated prop
-          >
-            <Menu
-              mode="vertical"
-              items={menuItems.map((item) => ({
-                key: item.key,
-                label: <a href={`#${item.label.toLowerCase()}`}>{item.label}</a>,
-              }))}
-            />
-          </Drawer>
-        </div>
-      </Header>
-      <Content
-        style={{
-          padding: '0 48px',
-        }}
-      >
-        <Breadcrumb
-          style={{
-            margin: '16px 0',
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          style={{
-            background: colorBgContainer,
-            minHeight: 280,
-            padding: 24,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          Content
-        </div>
-      </Content>
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
-    </Layout>
+          Sistemas Multimídia 2024.2
+        </Footer>
+      </Layout>
+    </div>
   );
 };
 
