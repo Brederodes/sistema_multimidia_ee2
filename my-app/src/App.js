@@ -163,7 +163,7 @@ const App = () => {
               icon={<GlobalOutlined />}
               type="primary"
               style={{
-                right: 1810,
+                right: 1750,
                 bottom: 425,
               }}
               onClick={() => showModal(
@@ -171,20 +171,9 @@ const App = () => {
                   <p>
                     O Objetivo de Desenvolvimento Sustentável (ODS) 11, que busca tornar as cidades e os assentamentos humanos inclusivos, seguros, resilientes e sustentáveis, tem como um de seus eixos a proteção e a gestão sustentável dos recursos naturais. As florestas são um componente essencial nesse processo, pois sua preservação contribui para o equilíbrio climático, a segurança hídrica e a redução de desastres naturais. A ODS 11 busca melhorar a qualidade de vida nas cidades, implementando práticas que integrem a preservação ambiental com o desenvolvimento urbano, promovendo cidades mais verdes e com maior qualidade de vida para seus habitantes​.
                   </p>
-                  <p>
-                    Referência:
-                    <br />
-                    <a
-                      href="https://www.unep.org/pt-br/noticias-e-reportagens/comunicado-de-imprensa/os-planos-nacionais-de-acao-climatica-tem-metas"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      UNEP - Os planos nacionais de ação climática têm metas florestais insuficientes e o desmatamento continua a aumentar
-                    </a>
-                  </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="560" height="315" controls>
+                    <video width="475" height="315" controls>
                       <source src="\my-app\src\videos\ConservacaoFlorestal.mp4" type="video/mp4" />
                     </video>
                   </div>
@@ -197,20 +186,7 @@ const App = () => {
                     </audio>
                   </div>
                 </>
-                )
-              }
-            />
-
-            <FloatButton
-              icon={<WifiOutlined />}
-              type="primary"
-              style={{
-                right:170,
-                bottom: 580,
-              }}
-              onClick={() => showModal(
-                  'A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.'
-                )
+              )
               }
             />
 
@@ -218,10 +194,41 @@ const App = () => {
               icon={<HomeOutlined />}
               type="primary"
               style={{
-                right:555,
-                bottom:295,
+                right: 170,
+                bottom: 580,
               }}
-              onClick={() => showModal('A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.')}
+              onClick={() => showModal(
+                <>
+                  <p>
+                    Para que prédios e arranha-céus possam se integrar ao modelo de cidade sustentável proposto pela ODS 11, diversas adaptações e estratégias são essenciais:
+                  </p>
+                  <ul>
+                    <li><b>Fachadas Verdes:</b> Implementar fachadas e telhados verdes que ajudam a reduzir ilhas de calor, melhorar o conforto térmico interno e externo, e aumentar a área verde nas cidades.</li>
+                    <li><b>Mobilidade Sustentável:</b> Localizar os prédios em áreas próximas ao transporte público e integrar estacionamentos para bicicletas e estações de recarga para veículos elétricos.</li>
+                    <li><b>Conexão com o Entorno:</b> Projetar arranha-céus que respeitem o contexto urbano, com térreos ativos, praças públicas e espaços para interação social.</li>
+                  </ul>
+                </>
+              )
+              }
+            />
+
+            <FloatButton
+              icon={<HomeOutlined />}
+              type="primary"
+              style={{
+                right: 555,
+                bottom: 295,
+              }}
+              onClick={() => showModal(<>
+                <p>
+                  As casas podem se adaptar ao modelo de cidades sustentáveis do ODS 11 com uma série de mudanças que promovem eficiência, inclusão e resiliência ambiental. Essas adaptações envolvem:
+                </p>
+                <ul>
+                  <li><b>Eficiência Energética:</b> O uso de sistemas solares e eólicos para gerar energia renovável nas residências ajuda a reduzir a dependência de fontes fósseis e diminui o impacto ambiental.</li>
+                  <li><b>Gestão de Resíduos:</b> Incorporar sistemas de coleta seletiva e compostagem dentro das casas apoia a redução de resíduos enviados a aterros.</li>
+                  <li><b>Reuso de Recursos Naturais:</b> A instalação de sistemas de captação e reuso de água da chuva pode suprir demandas por água não potável, como para regar plantas ou lavar pisos, ajudando na conservação dos recursos hídricos</li>
+                </ul>
+              </>)}
             />
 
             <FloatButton
@@ -261,6 +268,51 @@ const App = () => {
                         rel="noopener noreferrer"
                       >
                         EDP - ODS 11
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="https://www.uninter.com/noticias/para-construir-cidades-sustentaveis-e-inclusivas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        UNINTER - Para construir cidades sustentáveis e inclusivas
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="https://www.unep.org/pt-br/noticias-e-reportagens/comunicado-de-imprensa/os-planos-nacionais-de-acao-climatica-tem-metas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        UNEP - Os planos nacionais de ação climática têm metas florestais insuficientes e o desmatamento continua a aumentar
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="https://www.abrainc.org.br/sustentabilidade-e-urbanismo/2023/04/11/arranhaceus-sao-alternativa-para-melhor-aproveitamento-do-solo-e-evitar-espraiamento-das-cidades"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ABRAINC - Arranha ceus sao alternativa para melhor aproveitamento do solo e evitar espraiamento das cidades
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="https://www.archdaily.com.br/br/976923/o-desenvolvimento-urbano-sustentavel-na-agenda-2030-da-onu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ARCHDAILY - O desenvolvimento urbano sustentável na Agenda 2030 da ONU
+                      </a>
+                    </p>
+                    <p>
+                      <a
+                        href="https://www.archdaily.com.br/br/1001430/arranha-ceus-a-solucao-e-crescer-para-cima-com-terreos-amigaveis"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ARCHDAILY - A solução é crescer para cima com terrenos amigaveis
                       </a>
                     </p>
                   </>
