@@ -5,9 +5,18 @@ import {
   Menu,
   theme,
   Button,
+  FloatButton,
   Drawer,
   Dropdown,
 } from 'antd';
+import {
+  QuestionCircleOutlined,
+  SunOutlined,
+  WifiOutlined,
+  ThunderboltOutlined,
+  BulbOutlined,
+  GlobalOutlined,
+} from '@ant-design/icons';
 
 import { MenuOutlined } from '@ant-design/icons';
 
@@ -123,6 +132,46 @@ const App = () => {
           >
             Content
           </div>
+          <FloatButton
+            icon={<WifiOutlined />}
+            type="primary"
+            style={{
+              right: 165,
+              bottom: 560,
+            }}
+          />
+          <FloatButton
+            icon={<SunOutlined />}
+            type="primary"
+            style={{
+              right: 1265,
+              bottom: 165,
+            }}
+          />
+          <FloatButton
+            icon={<ThunderboltOutlined />}
+            type="primary"
+            style={{
+              right: 555,
+              bottom: 270,
+            }}
+          />
+          <FloatButton
+            icon={<BulbOutlined />}
+            type="primary"
+            style={{
+              right: 1348,
+              bottom: 645,
+            }}
+          />
+          <FloatButton
+            icon={<GlobalOutlined />}
+            type="primary"
+            style={{
+              right: 1810,
+              bottom: 400,
+            }}
+          />
         </Content>
         <Footer
           style={{
