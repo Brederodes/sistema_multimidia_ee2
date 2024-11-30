@@ -56,7 +56,8 @@ const App = () => {
           backgroundImage: `url(/background.jpg)`,
           backgroundSize: 'cover', // Cover the entire viewport
           backgroundPosition: 'center', // Center the image
-          backgroundRepeat: 'no-repeat', // Do not repeat the image
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed', // Do not repeat the image
           minHeight: '100vh', // Ensure it covers the full viewport height
           display: 'flex', // Make this container a flexbox
           flexDirection: 'column', // Stack children vertically
@@ -76,7 +77,6 @@ const App = () => {
               padding: '0 16px',
               backgroundColor: 'transparent',
               color: '#fff',
-              borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             }}
           >
             <div
@@ -139,7 +139,7 @@ const App = () => {
           >
             {/* WiFi Button with Modal */}
             <FloatButton
-              icon={<WifiOutlined />}
+              icon={<HomeOutlined />}
               type="primary"
               style={{
                 right: 165,
@@ -157,17 +157,6 @@ const App = () => {
                 bottom: 175,
               }}
               onClick={() => showModal('Enjoy the Sun!')}
-            />
-
-            {/* Home Button with Modal */}
-            <FloatButton
-              icon={<HomeOutlined />}
-              type="primary"
-              style={{
-                right: 555,
-                bottom: 270,
-              }}
-              onClick={() => showModal('Home Button Clicked')}
             />
 
             {/* Thunderbolt Button with Modal */}
