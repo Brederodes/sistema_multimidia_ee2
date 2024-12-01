@@ -144,7 +144,22 @@ const App = () => {
                 right: 1255,
                 bottom: 190,
               }}
-              onClick={() => showModal('A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.')}
+              onClick={() => showModal(
+                <>
+                  <p>
+                  A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.
+                  </p>
+                  <div>
+                    <h4>Vídeo Relacionado:</h4>
+                    <video width="475" height="315" controls>
+                      <source src="/videos/EnergiaSolar.mp4" 
+                      type="video/mp4" 
+                      />
+                    </video>
+                  </div>
+                </>
+                )
+              }
             />
 
             {/* Thunderbolt Button with Modal */}
@@ -155,7 +170,22 @@ const App = () => {
                 right: 1349,
                 bottom: 668,
               }}
-              onClick={() => showModal('A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.')}
+              onClick={() => showModal(
+                <>
+                  <p>
+                  A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.
+                  </p>
+                  <div>
+                    <h4>Vídeo Relacionado:</h4>
+                    <video width="475" height="315" controls>
+                      <source src="/videos/EnergiaEolica.mp4" 
+                      type="video/mp4" 
+                      />
+                    </video>
+                  </div>
+                </>
+                )
+              }
             />
 
             {/* Global Button with Modal */}
@@ -193,7 +223,7 @@ const App = () => {
             />
 
             <FloatButton
-              icon={<HomeOutlined />}
+              icon={<WifiOutlined />}
               type="primary"
               style={{
                 right: 170,
