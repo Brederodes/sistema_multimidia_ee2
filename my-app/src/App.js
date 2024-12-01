@@ -163,7 +163,7 @@ const App = () => {
               icon={<GlobalOutlined />}
               type="primary"
               style={{
-                right: 1750,
+                right: 1800,
                 bottom: 425,
               }}
               onClick={() => showModal(
@@ -174,13 +174,15 @@ const App = () => {
                   <div>
                     <h4>Vídeo Relacionado:</h4>
                     <video width="475" height="315" controls>
-                      <source src="\my-app\src\videos\ConservacaoFlorestal.mp4" type="video/mp4" />
+                      <source src="/videos/ConservacaoFlorestal.mp4" 
+                      type="video/mp4" 
+                      />
                     </video>
                   </div>
                   <div>
                     <audio controls autoPlay>
                       <source
-                        src="\my-app\src\audios\forest.mp3"
+                        src="/audios/forest.mp3"
                         type="audio/mp3"
                       />
                     </audio>
