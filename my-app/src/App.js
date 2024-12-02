@@ -13,41 +13,62 @@ import {
   Layout,
   Modal
 } from 'antd';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
-  const [drawerVisible, setDrawerVisible] = React.useState(false);
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [modalContent, setModalContent] = React.useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
-  const videoRef = useRef(null);
-
-  const showDrawer = () => setDrawerVisible(true);
-  const closeDrawer = () => setDrawerVisible(false);
-
-
+  const videoRef = useRef([]);
+  const audioRef = useRef([]);
 
   const showModal = (content) => {
     setModalContent(content);
     setModalVisible(true);
+
+    setTimeout(() => {
+      videoRef.current.forEach((video) => {
+        if (video) {
+          video.play();
+        }
+      });
+    }, 100);
+
+    setTimeout(() => {
+      audioRef.current.forEach((audio) => {
+        if (audio) {
+          audio.play();
+        }
+      });
+    }, 100);
   };
 
   const closeModal = () => {
-    // Para o vídeo ao fechar o modal
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0; // Reinicia o vídeo
-      videoRef.current.load(); // Recarrega o vídeo
-
-    }
+    videoRef.current.forEach((video) => {
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+    audioRef.current.forEach((audio) => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
     setModalVisible(false);
+  };
+
+  const addRef = (refArray, el) => {
+    if (el && !refArray.current.includes(el)) {
+      refArray.current.push(el);
+    }
   };
 
   return (
     <>
-      {/* Global styles */}
       <style>
         {`
           html, body {
@@ -114,31 +135,6 @@ const App = () => {
                 ODS 11 - Cidades Sustentáveis
               </span>
             </div>
-
-            {/* Mobile Menu */}
-            <div
-              className="mobile-menu"
-              style={{
-                display: 'none',
-              }}
-            >
-              <Button
-                type="primary"
-                icon={<MenuOutlined />}
-                onClick={showDrawer}
-                style={{
-                  backgroundColor: '#003366',
-                }}
-              />
-              <Drawer
-                title="Menu"
-                placement="right"
-                closable={true}
-                onClose={closeDrawer}
-                open={drawerVisible}
-              >
-              </Drawer>
-            </div>
           </Header>
           <Content
             style={{
@@ -146,65 +142,63 @@ const App = () => {
               backgroundColor: 'transparent',
             }}
           >
-            {/* Sun Button with Modal */}
             <FloatButton
               icon={<SunOutlined />}
               type="primary"
               style={{
-                right: 1400,
-                bottom: 190,
+                left: 513,
+                top: 560,
+                backgroundColor: 'green',
               }}
               onClick={() => showModal(
                 <>
                   <p>
-                  A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.
+                    A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls ref={videoRef}>
+                    <video width="475" height="315" controls ref={(el) => addRef(videoRef, el)}>
                       <source src="/videos/EnergiaSolar.mp4"
-                      type="video/mp4"
+                        type="video/mp4"
                       />
                     </video>
                   </div>
                 </>
-                )
+              )
               }
             />
-
-            {/* Thunderbolt Button with Modal */}
             <FloatButton
               icon={<ThunderboltOutlined />}
               type="primary"
               style={{
-                right: 1349,
-                bottom: 668,
+                left: 440,
+                top: 180,
+                backgroundColor: 'green',
               }}
               onClick={() => showModal(
                 <>
                   <p>
-                  A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.
+                    A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls ref={videoRef}>
+                    <video width="475" height="315" controls ref={(el) => addRef(videoRef, el)}>
                       <source src="/videos/EnergiaEolica.mp4"
-                      type="video/mp4"
+                        type="video/mp4"
                       />
                     </video>
                   </div>
                 </>
-                )
+              )
               }
             />
-
-            {/* Global Button with Modal */}
             <FloatButton
               icon={<GlobalOutlined />}
               type="primary"
               style={{
-                right: 1800,
-                bottom: 425,
+                left: 50,
+                top: 370,
+                backgroundColor: 'green',
               }}
               onClick={() => showModal(
                 <>
@@ -213,14 +207,14 @@ const App = () => {
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls ref={videoRef}>
+                    <video width="475" height="315" controls ref={(el) => addRef(videoRef, el)}>
                       <source src="/videos/ConservacaoFlorestal.mp4"
-                      type="video/mp4"
+                        type="video/mp4"
                       />
                     </video>
                   </div>
                   <div>
-                    <audio controls autoPlay>
+                    <audio ref={(el) => addRef(audioRef, el)}>
                       <source
                         src="/audios/forest.mp3"
                         type="audio/mp3"
@@ -231,13 +225,13 @@ const App = () => {
               )
               }
             />
-
             <FloatButton
               icon={<WifiOutlined />}
               type="primary"
               style={{
-                right: 170,
-                bottom: 580,
+                left: 1330,
+                top: 130,
+                backgroundColor: 'green',
               }}
               onClick={() => showModal(
                 <>
@@ -253,13 +247,13 @@ const App = () => {
               )
               }
             />
-
             <FloatButton
               icon={<HomeOutlined />}
               type="primary"
               style={{
-                right: 555,
-                bottom: 295,
+                left: 1050,
+                top: 470,
+                backgroundColor: 'green',
               }}
               onClick={() => showModal(<>
                 <p>
@@ -272,13 +266,13 @@ const App = () => {
                 </ul>
               </>)}
             />
-
             <FloatButton
               icon={<MenuOutlined />}
               type="primary"
               style={{
                 right: 50,
                 bottom: 70,
+                backgroundColor: 'green',
               }}
               onClick={() =>
                 showModal(
@@ -373,8 +367,6 @@ const App = () => {
             Sistemas Multimídia 2024.2
           </Footer>
         </Layout>
-
-        {/* Modal Dialog */}
         <Modal
           title="ODS 11 - Cidades Sustentáveis"
           open={modalVisible}
