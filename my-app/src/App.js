@@ -1,22 +1,19 @@
-import React from 'react';
 import {
-  Breadcrumb,
-  Layout,
-  Menu,
-  theme,
-  Button,
-  FloatButton,
-  Drawer,
-  Modal,
-} from 'antd';
-import {
-  SunOutlined,
-  WifiOutlined,
-  ThunderboltOutlined,
   GlobalOutlined,
   HomeOutlined,
   MenuOutlined,
+  SunOutlined,
+  ThunderboltOutlined,
+  WifiOutlined,
 } from '@ant-design/icons';
+import {
+  Button,
+  Drawer,
+  FloatButton,
+  Layout,
+  Modal
+} from 'antd';
+import React, { useRef } from 'react';
 
 const { Header, Content, Footer } = Layout;
 
@@ -25,15 +22,28 @@ const App = () => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [modalContent, setModalContent] = React.useState('');
 
+  const videoRef = useRef(null);
+
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
+  
+  
 
   const showModal = (content) => {
     setModalContent(content);
     setModalVisible(true);
   };
 
-  const closeModal = () => setModalVisible(false);
+  const closeModal = () => {
+    // Para o vídeo ao fechar o modal
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0; // Reinicia o vídeo
+      videoRef.current.load(); // Recarrega o vídeo
+      
+    }
+    setModalVisible(false);
+  };
 
   return (
     <>
@@ -151,7 +161,7 @@ const App = () => {
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls>
+                    <video width="475" height="315" controls ref={videoRef}>
                       <source src="/videos/EnergiaSolar.mp4" 
                       type="video/mp4" 
                       />
@@ -177,7 +187,7 @@ const App = () => {
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls>
+                    <video width="475" height="315" controls ref={videoRef}>
                       <source src="/videos/EnergiaEolica.mp4" 
                       type="video/mp4" 
                       />
@@ -203,7 +213,7 @@ const App = () => {
                   </p>
                   <div>
                     <h4>Vídeo Relacionado:</h4>
-                    <video width="475" height="315" controls>
+                    <video width="475" height="315" controls ref={videoRef}>
                       <source src="/videos/ConservacaoFlorestal.mp4" 
                       type="video/mp4" 
                       />
