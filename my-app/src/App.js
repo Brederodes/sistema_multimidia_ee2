@@ -26,8 +26,8 @@ const App = () => {
 
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
-  
-  
+
+
 
   const showModal = (content) => {
     setModalContent(content);
@@ -40,7 +40,7 @@ const App = () => {
       videoRef.current.pause();
       videoRef.current.currentTime = 0; // Reinicia o vídeo
       videoRef.current.load(); // Recarrega o vídeo
-      
+
     }
     setModalVisible(false);
   };
@@ -63,14 +63,14 @@ const App = () => {
       <div
         style={{
           backgroundImage: `url(/background.jpg)`,
-          backgroundSize: 'cover', // Cover the entire viewport
-          backgroundPosition: 'center', // Center the image
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed', // Do not repeat the image
-          minHeight: '100vh', // Ensure it covers the full viewport height
-          display: 'flex', // Make this container a flexbox
-          flexDirection: 'column', // Stack children vertically
-          justifyContent: 'space-between', // Push footer to the bottom
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
         }}
       >
         <Layout
@@ -151,7 +151,7 @@ const App = () => {
               icon={<SunOutlined />}
               type="primary"
               style={{
-                right: 1255,
+                right: 1400,
                 bottom: 190,
               }}
               onClick={() => showModal(
@@ -162,8 +162,8 @@ const App = () => {
                   <div>
                     <h4>Vídeo Relacionado:</h4>
                     <video width="475" height="315" controls ref={videoRef}>
-                      <source src="/videos/EnergiaSolar.mp4" 
-                      type="video/mp4" 
+                      <source src="/videos/EnergiaSolar.mp4"
+                      type="video/mp4"
                       />
                     </video>
                   </div>
@@ -188,8 +188,8 @@ const App = () => {
                   <div>
                     <h4>Vídeo Relacionado:</h4>
                     <video width="475" height="315" controls ref={videoRef}>
-                      <source src="/videos/EnergiaEolica.mp4" 
-                      type="video/mp4" 
+                      <source src="/videos/EnergiaEolica.mp4"
+                      type="video/mp4"
                       />
                     </video>
                   </div>
@@ -214,8 +214,8 @@ const App = () => {
                   <div>
                     <h4>Vídeo Relacionado:</h4>
                     <video width="475" height="315" controls ref={videoRef}>
-                      <source src="/videos/ConservacaoFlorestal.mp4" 
-                      type="video/mp4" 
+                      <source src="/videos/ConservacaoFlorestal.mp4"
+                      type="video/mp4"
                       />
                     </video>
                   </div>
