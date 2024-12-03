@@ -124,7 +124,7 @@ const App = () => {
               />
               <span
                 style={{
-                  color: 'green',
+                  color: '#ff6c00',
                   fontSize: '20px',
                   fontWeight: 'bold',
                   marginRight: '8px',
@@ -366,7 +366,7 @@ const App = () => {
           <Footer
             style={{
               textAlign: 'center',
-              backgroundColor: 'green',
+              backgroundColor: '#ff6c00',
               padding: '16px',
               color: '#fff',
             }}
