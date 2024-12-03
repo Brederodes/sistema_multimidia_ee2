@@ -18,13 +18,16 @@ const { Header, Content, Footer } = Layout;
 const App = () => {
   const [modalVisible, setModalVisible] = useState(null);
   const [modalContent, setModalContent] = useState('');
+  const [background, setBackground] = useState('/background1_empty.jpg');
+  const [transitionClass, setTransitionClass] = useState('');
 
   const videoRefs = useRef({});
   const audioRefs = useRef([]);
 
-  const showModalVideos = (id, content) => {
+  const showModalVideos = (id, content, newBackground) => {
     setModalContent(content);
     setModalVisible(id);
+    setBackground(newBackground);
 
     setTimeout(() => {
       if (videoRefs.current[id]) {
@@ -33,9 +36,10 @@ const App = () => {
     }, 100);
   };
 
-  const showModal = (content) => {
+  const showModal = (content, newBackground) => {
     setModalContent(content);
     setModalVisible(true);
+    setBackground(newBackground);
 
     setTimeout(() => {
       audioRefs.current.forEach((audio) => {
@@ -77,7 +81,7 @@ const App = () => {
       </style>
       <div
         style={{
-          backgroundImage: `url(/background.jpg)`,
+          backgroundImage: `url(${background})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -162,7 +166,7 @@ const App = () => {
                       </video>
                     </div>
                   </>
-                ))
+                ), '/background3_complete.jpg')
               }
             />
 
@@ -196,7 +200,7 @@ const App = () => {
                       </video>
                     </div>
                   </>
-                ))
+                ), '/background2_eolic.jpg')
               }
             />
             {/* Global Button with Modal */}
@@ -220,7 +224,7 @@ const App = () => {
                       </audio>
                     </div>
                   </>
-                ))
+                ), '/background3_complete.jpg')
               }
             />
             <FloatButton
@@ -231,7 +235,7 @@ const App = () => {
                 top: 130,
                 backgroundColor: 'green',
               }}
-              onClick={() => showModal(
+              onClick={() => showModal((
                 <>
                   <p>
                     Para que prédios e arranha-céus possam se integrar ao modelo de cidade sustentável proposto pela ODS 11, diversas adaptações e estratégias são essenciais:
@@ -247,7 +251,7 @@ const App = () => {
                     </audio>
                   </div>
                 </>
-              )
+              ), '/background3_complete.jpg')
               }
             />
             <FloatButton
@@ -258,7 +262,7 @@ const App = () => {
                 top: 470,
                 backgroundColor: 'green',
               }}
-              onClick={() => showModal(<>
+              onClick={() => showModal((<>
                 <p>
                   As casas podem se adaptar ao modelo de cidades sustentáveis do ODS 11 com uma série de mudanças que promovem eficiência, inclusão e resiliência ambiental. Essas adaptações envolvem:
                 </p>
@@ -267,7 +271,7 @@ const App = () => {
                   <li><b>Gestão de Resíduos:</b> Incorporar sistemas de coleta seletiva e compostagem dentro das casas apoia a redução de resíduos enviados a aterros.</li>
                   <li><b>Reuso de Recursos Naturais:</b> A instalação de sistemas de captação e reuso de água da chuva pode suprir demandas por água não potável, como para regar plantas ou lavar pisos, ajudando na conservação dos recursos hídricos</li>
                 </ul>
-              </>)}
+              </>), '/background3_complete.jpg')}
             />
             <FloatButton
               icon={<MenuOutlined />}
@@ -278,7 +282,7 @@ const App = () => {
                 backgroundColor: 'green',
               }}
               onClick={() =>
-                showModal(
+                showModal((
                   <>
                     <p>
                       Referências:
@@ -355,7 +359,7 @@ const App = () => {
                       </a>
                     </p>
                   </>
-                )
+                ), '/background3_complete.jpg')
               }
             />
           </Content>
