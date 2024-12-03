@@ -142,10 +142,12 @@ const App = () => {
           >
             <FloatButton
               icon={<SunOutlined />}
-              type="primary"
+              type=''
               style={{
                 left: 513,
                 top: 560,
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00', 
               }}
               onClick={() =>
                 showModalVideos(1, (
@@ -173,11 +175,12 @@ const App = () => {
             {/* Thunderbolt Button with Modal */}
             <FloatButton
               icon={<ThunderboltOutlined />}
-              type="primary"
+              type=''
               style={{
                 left: 440,
                 top: 180,
-                backgroundColor: 'green',
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00',
               }}
               onClick={() =>
                 showModalVideos(2, (
@@ -207,10 +210,12 @@ const App = () => {
             {/* FloatButton - Conservação Florestal */}
             <FloatButton
               icon={<GlobalOutlined />}
-              type="primary"
+              type=''
               style={{
                 left: 50,
                 top: 370,
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00',
               }}
               onClick={() =>
                 showModalVideos(3, (
@@ -229,11 +234,12 @@ const App = () => {
             />
             <FloatButton
               icon={<WifiOutlined />}
-              type="primary"
+              type=''
               style={{
                 left: 1330,
                 top: 130,
-                backgroundColor: 'green',
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00',
               }}
               onClick={() => showModal((
                 <>
@@ -256,11 +262,12 @@ const App = () => {
             />
             <FloatButton
               icon={<HomeOutlined />}
-              type="primary"
+              type=''
               style={{
                 left: 1050,
                 top: 470,
-                backgroundColor: 'green',
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00',
               }}
               onClick={() => showModal((<>
                 <p>
@@ -275,11 +282,12 @@ const App = () => {
             />
             <FloatButton
               icon={<MenuOutlined />}
-              type="primary"
+              type=''
               style={{
                 right: 50,
                 bottom: 70,
-                backgroundColor: 'green',
+                backgroundColor: '#ff6c00',
+                borderColor: '#ff6c00',
               }}
               onClick={() =>
                 showModal((

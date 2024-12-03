@@ -53,3 +53,18 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-float-btn {
+  background-color: #ff6c00 !important; /* Sempre aplica a cor */
+  border-color: #ff6c00 !important;    /* Ajusta a borda para combinar */
+}
+
+.ant-float-btn:hover {
+  background-color: #ff6c00 !important; /* Cor no hover */
+  border-color: #ff6c00 !important;
+}
+
+.ant-float-btn:focus {
+  background-color: #ff6c00 !important; /* Cor no foco */
+  border-color: #ff6c00 !important;
+}
