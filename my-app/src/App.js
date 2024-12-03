@@ -11,25 +11,26 @@ import {
   Layout,
   Modal
 } from 'antd';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
-  const [drawerVisible, setDrawerVisible] = React.useState(false);
-  const [modalVisible, setModalVisible] = React.useState(null); // Identificador do modal visível
-  const [modalContent, setModalContent] = React.useState('');
+  const [modalVisible, setModalVisible] = useState(null);
+  const [modalContent, setModalContent] = useState('');
 
   const videoRefs = useRef({});
-
-  const showDrawer = () => setDrawerVisible(true);
-  const closeDrawer = () => setDrawerVisible(false);
-  
-  
+  const audioRefs = useRef([]);
 
   const showModalVideos = (id, content) => {
     setModalContent(content);
-    setModalVisible(id); // Identifica qual modal está visível
+    setModalVisible(id);
+
+    setTimeout(() => {
+      if (videoRefs.current[id]) {
+        videoRefs.current[id].play();
+      }
+    }, 100);
   };
 
   const showModal = (content) => {
@@ -37,35 +38,27 @@ const App = () => {
     setModalVisible(true);
 
     setTimeout(() => {
-      videoRef.current.forEach((video) => {
-        if (video) {
-          video.play();
-        }
-      });
-    }, 100);
-
-    setTimeout(() => {
-      audioRef.current.forEach((audio) => {
+      audioRefs.current.forEach((audio) => {
         if (audio) {
           audio.play();
         }
       });
     }, 100);
   };
-  
+
   const closeModal = (id) => {
     if (videoRefs.current[id]) {
       videoRefs.current[id].pause();
       videoRefs.current[id].currentTime = 0;
       videoRefs.current[id].load();
     }
-    setModalVisible(false); 
-  };
-
-  const addRef = (refArray, el) => {
-    if (el && !refArray.current.includes(el)) {
-      refArray.current.push(el);
-    }
+    audioRefs.current.forEach((audio) => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+    setModalVisible(false);
   };
 
   return (
@@ -85,14 +78,14 @@ const App = () => {
       <div
         style={{
           backgroundImage: `url(/background.jpg)`,
-          backgroundSize: 'cover', // Cover the entire viewport
-          backgroundPosition: 'center', // Center the image
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed', // Do not repeat the image
-          minHeight: '100vh', // Ensure it covers the full viewport height
-          display: 'flex', // Make this container a flexbox
-          flexDirection: 'column', // Stack children vertically
-          justifyContent: 'space-between', // Push footer to the bottom
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
         }}
       >
         <Layout
@@ -144,31 +137,34 @@ const App = () => {
             }}
           >
             <FloatButton
-  icon={<SunOutlined />}
-  type="primary"
-  style={{ right: 1400, bottom: 190 }}
-  onClick={() =>
-    showModalVideos(1, (
-      <>
-        <p>
-        A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.
-        </p>
-        <div>
-          <h4>Vídeo Relacionado:</h4>
-          <video
-            width="475"
-            height="315"
-            controls
-            autoPlay
-            ref={(el) => (videoRefs.current[1] = el)}
-          >
-            <source src="/videos/EnergiaSolar.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </>
-    ))
-  }
-/>
+              icon={<SunOutlined />}
+              type="primary"
+              style={{
+                left: 513,
+                top: 560,
+              }}
+              onClick={() =>
+                showModalVideos(1, (
+                  <>
+                    <p>
+                      A energia solar tem um enorme potencial para contribuir com o cumprimento do ODS 11, que visa tornar as cidades mais sustentáveis e resilientes. Ela pode ajudar na criação de infraestruturas urbanas mais ecológicas e na redução das emissões de gases de efeito estufa, fundamentais para mitigar as mudanças climáticas e melhorar a qualidade de vida nas cidades. A implementação de sistemas solares pode diminuir a dependência de fontes de energia não renováveis, aliviar a pressão sobre os sistemas de energia e aumentar a resiliência urbana, especialmente em regiões com alta vulnerabilidade a desastres climáticos. A adoção da energia solar também está alinhada com os esforços globais para promover uma economia mais verde e sustentável, que não apenas melhore a qualidade de vida nas cidades, mas também proporcione uma maior independência energética e redução de impactos ambientais.
+                    </p>
+                    <div>
+                      <h4>Vídeo Relacionado:</h4>
+                      <video
+                        width="475"
+                        height="315"
+                        controls
+                        autoPlay
+                        ref={(el) => (videoRefs.current[1] = el)}
+                      >
+                        <source src="/videos/EnergiaSolar.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </>
+                ))
+              }
+            />
 
             {/* Thunderbolt Button with Modal */}
             <FloatButton
@@ -179,79 +175,67 @@ const App = () => {
                 top: 180,
                 backgroundColor: 'green',
               }}
-              onClick={() => 
+              onClick={() =>
                 showModalVideos(2, (
-                <>
-                  <p>
-                    A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.
-                  </p>
-                  <div>
-                    <h4>Vídeo Relacionado:</h4>
-                    <video
-            width="475"
-            height="315"
-            controls
-            autoPlay
-            ref={(el) => (videoRefs.current[2] = el)} 
-          >
-                      <source src="/videos/EnergiaEolica.mp4" 
-                      type="video/mp4" 
-                      />
-                    </video>
-                  </div>
-                </>
+                  <>
+                    <p>
+                      A energia eólica tem grande potencial para contribuir com o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa tornar as cidades mais sustentáveis, resilientes e inclusivas. A geração de energia a partir do vento pode ajudar a reduzir a dependência de fontes de energia poluentes, promover a eficiência energética e garantir a oferta de eletricidade limpa e acessível, características essenciais para a sustentabilidade das cidades. A energia eólica é uma das fontes de energia renovável mais promissoras para mitigar os impactos das mudanças climáticas nas áreas urbanas, uma vez que reduz significativamente as emissões de gases de efeito estufa. Além disso, a implantação de parques eólicos urbanos e em áreas periurbanas pode ajudar a descentralizar a geração de energia, tornando as cidades mais autossuficientes e menos vulneráveis a crises energéticas.
+                    </p>
+                    <div>
+                      <h4>Vídeo Relacionado:</h4>
+                      <video
+                        width="475"
+                        height="315"
+                        controls
+                        autoPlay
+                        ref={(el) => (videoRefs.current[2] = el)}
+                      >
+                        <source src="/videos/EnergiaEolica.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </>
                 ))
               }
             />
-{/* Global Button with Modal */}
-{/* FloatButton - Conservação Florestal */}
-<FloatButton
-  icon={<GlobalOutlined />}
-  type="primary"
-  style={{
-    right: 1800,
-    bottom: 425,
-  }}
-  onClick={() =>
-    showModalVideos(3, (
-      <>
-        <p>
-        O Objetivo de Desenvolvimento Sustentável (ODS) 11, que busca tornar as cidades e os assentamentos humanos inclusivos, seguros, resilientes e sustentáveis, tem como um de seus eixos a proteção e a gestão sustentável dos recursos naturais. As florestas são um componente essencial nesse processo, pois sua preservação contribui para o equilíbrio climático, a segurança hídrica e a redução de desastres naturais. A ODS 11 busca melhorar a qualidade de vida nas cidades, implementando práticas que integrem a preservação ambiental com o desenvolvimento urbano, promovendo cidades mais verdes e com maior qualidade de vida para seus habitantes​.
-        </p>
-        <div>
-          <h4>Vídeo Relacionado:</h4>
-          <video
-            width="475"
-            height="315"
-            controls
-            ref={(el) => (videoRefs.current[3] = el)} 
-          >
-            <source src="/videos/ConservacaoFlorestal.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div>
-          <h4>Áudio Relacionado:</h4>
-          <audio controls autoPlay>
-            <source src="/audios/forest.mp3" type="audio/mp3" />
-          </audio>
-        </div>
-      </>
-    ))
-  }
-/>
+            {/* Global Button with Modal */}
+            {/* FloatButton - Conservação Florestal */}
+            <FloatButton
+              icon={<GlobalOutlined />}
+              type="primary"
+              style={{
+                left: 50,
+                top: 370,
+              }}
+              onClick={() =>
+                showModalVideos(3, (
+                  <>
+                    <p>
+                      O Objetivo de Desenvolvimento Sustentável (ODS) 11, que busca tornar as cidades e os assentamentos humanos inclusivos, seguros, resilientes e sustentáveis, tem como um de seus eixos a proteção e a gestão sustentável dos recursos naturais. As florestas são um componente essencial nesse processo, pois sua preservação contribui para o equilíbrio climático, a segurança hídrica e a redução de desastres naturais. A ODS 11 busca melhorar a qualidade de vida nas cidades, implementando práticas que integrem a preservação ambiental com o desenvolvimento urbano, promovendo cidades mais verdes e com maior qualidade de vida para seus habitantes​.
+                    </p>
+                    <div>
+                      <audio autoPlay>
+                        <source src="/audios/forest.mp3" type="audio/mp3" />
+                      </audio>
+                    </div>
+                  </>
+                ))
+              }
+            />
 
-{/* Modal Dinâmico */}
-{modalVisible && (
-  <Modal
-  title="ODS 11 - Cidades Sustentáveis"
-    visible={modalVisible}
-    onOk={() => closeModal(modalVisible)} 
-    onCancel={() => closeModal(modalVisible)} 
-  >
-    {modalContent}
-  </Modal>
-)}
-            
+            {/* Modal Dinâmico */}
+            {modalVisible && (
+              <Modal
+                title="ODS 11 - Cidades Sustentáveis"
+                visible={modalVisible}
+                onOk={() => closeModal(modalVisible)}
+                onCancel={() => closeModal(modalVisible)}
+              >
+                {modalContent}
+              </Modal>
+            )}
+
             <FloatButton
               icon={<WifiOutlined />}
               type="primary"
@@ -270,6 +254,11 @@ const App = () => {
                     <li><b>Mobilidade Sustentável:</b> Localizar os prédios em áreas próximas ao transporte público e integrar estacionamentos para bicicletas e estações de recarga para veículos elétricos.</li>
                     <li><b>Conexão com o Entorno:</b> Projetar arranha-céus que respeitem o contexto urbano, com térreos ativos, praças públicas e espaços para interação social.</li>
                   </ul>
+                  <div>
+                    <audio autoPlay>
+                      <source src="/audios/city-ambience.mp3" type="audio/mp3" />
+                    </audio>
+                  </div>
                 </>
               )
               }
@@ -394,13 +383,6 @@ const App = () => {
             Sistemas Multimídia 2024.2
           </Footer>
         </Layout>
-        <Modal
-          title="ODS 11 - Cidades Sustentáveis"
-          onOk={closeModal}
-          onCancel={closeModal}
-        >
-          <div>{modalContent}</div>
-        </Modal>
       </div>
     </>
   );
