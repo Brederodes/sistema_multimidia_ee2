@@ -223,19 +223,6 @@ const App = () => {
                 ))
               }
             />
-
-            {/* Modal Dinâmico */}
-            {modalVisible && (
-              <Modal
-                title="ODS 11 - Cidades Sustentáveis"
-                visible={modalVisible}
-                onOk={() => closeModal(modalVisible)}
-                onCancel={() => closeModal(modalVisible)}
-              >
-                {modalContent}
-              </Modal>
-            )}
-
             <FloatButton
               icon={<WifiOutlined />}
               type="primary"
@@ -382,6 +369,16 @@ const App = () => {
           >
             Sistemas Multimídia 2024.2
           </Footer>
+          {modalVisible && (
+            <Modal
+              title="ODS 11 - Cidades Sustentáveis"
+              visible={modalVisible}
+              onOk={() => closeModal(modalVisible)}
+              onCancel={() => closeModal(modalVisible)}
+            >
+              {modalContent}
+            </Modal>
+          )}
         </Layout>
       </div>
     </>
